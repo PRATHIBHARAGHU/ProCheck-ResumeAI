@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+        <h1 class="text-3xl font-black tracking-tight">Analysis History Logs</h1>
+        <p class="text-sm text-slate-400 mt-1">Historical ledger of all compiled algorithmic parsing data indexes saved across this account session.</p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                    <tr class="bg-slate-50 dark:bg-slate-950 text-xs font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                        <th class="p-4">Target Job Profile / Role</th>
+                        <th class="p-4">Execution Compiled Date</th>
+                        <th class="p-4">Aggregated ATS Score</th>
+                        <th class="p-4 text-right">Database Node Operations</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-medium">
+                    {% for row in history %}
+                    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                        <td class="p-4 font-bold text-slate-800 dark:text-slate-100">{{ row.job_description.title }}</td>
+                        <td class="p-4 text-xs text-slate-400 font-mono">{{ row.created_at|date:"Y-m-d H:i" }}</td>
+                        <td class="p-4">
+                            <span class="px-2.5 py-1 text-xs font-bold font-mono rounded {% if row.ats_score >= 75 %} bg-emerald-500/10 text-emerald-500 {% else %} bg-amber-500/10 text-amber-500 {% endif %}">
+                                {{ row.ats_score }}/100
+                            </span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <div class="flex items-center justify-end gap-3">
+                                <a href="{% url 'analyzer:report' row.pk %}" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors">Inspect Log</a>
+                                <form method="POST" action="{% url 'analyzer:delete' row.pk %}" onsubmit="return confirm('Confirm permanent deletion of this structural record packet?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="px-3 py-1.5 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white text-xs font-semibold rounded-lg transition-all">Purge</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="p-12 text-center text-xs text-slate-400">Zero active analysis ledger blocks found across database clusters.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

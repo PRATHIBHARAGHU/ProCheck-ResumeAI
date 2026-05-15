@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <!-- Radial Gradient Backdrop Elements -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-r from-indigo-500/10 to-purple-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="px-3 py-1 inline-flex items-center text-xs font-semibold bg-indigo-500/10 border border-indigo-500/30 text-indigo-500 dark:text-indigo-400 rounded-full mb-4 uppercase tracking-wider">Next-Gen Language Models Context Parsing</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+            Optimize Your Resume For The <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">AI Recruiting Era</span>
+        </h1>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 font-normal leading-relaxed">
+            Audit your resume structural scoring profile against production industry job descriptions instantly. Extract latent keywords, identify missing technical skills, and simulate internal Applicant Tracking Systems metrics.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{% url 'accounts:register' %}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 transform hover:-translate-y-0.5 transition-all text-center">Analyze Your Resume Now</a>
+            <a href="{% url 'about' %}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-center">View Technical Specifications</a>
+        </div>
+    </div>
+
+    <!-- Feature Grid Layout Grid -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <div class="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all shadow-sm">
+            <h3 class="text-xl font-bold mb-3">Multi-Vector Matrix Scoring</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Calculates a composite score based on separate keyword matching, semantic alignment, technical domain skill balance, and layout formatting rules.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all shadow-sm">
+            <h3 class="text-xl font-bold mb-3">Semantic Analysis Engine</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Goes beyond strict text string lookups. Leverages deep embedding representations to calculate the similarity of your engineering experience to the role.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500/50 transition-all shadow-sm">
+            <h3 class="text-xl font-bold mb-3">Skill Extraction</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Cross-references terms with a technical dictionary of over 200 items to spot missing frameworks, deployment tools, or database architectures.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

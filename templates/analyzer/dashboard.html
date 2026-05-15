@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Welcome Panel Grid Component -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <div>
+            <h1 class="text-3xl font-extrabold tracking-tight">System Control Dashboard</h1>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Operational analysis parameters tracking user session: <span class="font-mono text-indigo-500">{{ user.username }}</span></p>
+        </div>
+        <a href="{% url 'analyzer:analyze' %}" class="px-5 py-3 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-500/20 transition-all flex items-center gap-2">
+            <span><b>+</b></span> Execute New Analysis Session
+        </a>
+    </div>
+
+    <!-- Quick Insights Metric Grid Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Processed Profiles</p>
+                <h3 class="text-3xl font-black mt-2">{{ total_analyzed }}</h3>
+            </div>
+
+        </div>
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Mean ATS Performance Score</p>
+                <h3 class="text-3xl font-black mt-2 text-gradient bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">{{ avg_score }}<span class="text-sm text-slate-400">/100</span></h3>
+            </div>
+
+        </div>
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between sm:col-span-2 lg:col-span-1">
+            <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">System NLP Status</p>
+                <h3 class="text-sm font-bold mt-3 text-emerald-500 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Operational Cluster Stack Active
+                </h3>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Visual Analytics Workspace Interface Layout -->
+    <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Chart.js Graph Component Rendering Interface Grid -->
+        <div class="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold mb-4">ATS Evaluation Score Trend Vectors</h3>
+            <div class="h-64 relative">
+                <canvas id="analyticsTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Tracking Activity Log Feed Stack -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold mb-4">Recent Executions</h3>
+            <div class="space-y-4">
+                {% for log in recent_activity %}
+                <a href="{% url 'analyzer:report' log.pk %}" class="block p-3 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-semibold truncate max-w-[150px]">{{ log.job_description.title }}</h4>
+                        <span class="text-xs font-mono font-bold px-2 py-0.5 rounded {% if log.ats_score >= 75 %} bg-emerald-500/10 text-emerald-500 {% else %} bg-amber-500/10 text-amber-500 {% endif %}">{{ log.ats_score }}</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">{{ log.created_at|date:"M d, Y H:i" }}</p>
+                </a>
+                {% empty %}
+                <p class="text-xs text-slate-400 text-center py-10">No analytical log packets currently compiled in database storage layout vectors.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // System Chart Engine Initialization Configuration Context
+    const labels = JSON.parse('{{ chart_labels|safe }}');
+    const dataPoints = JSON.parse('{{ chart_data|safe }}');
+    
+    const ctx = document.getElementById('analyticsTrendChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels.length ? labels : ["No Data"],
+            datasets: [{
+                label: 'ATS Aggregated Score Metrics',
+                data: dataPoints.length ? dataPoints : [0],
+                borderColor: '#4f46e5',
+                backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+</script>
+{% endblock %}

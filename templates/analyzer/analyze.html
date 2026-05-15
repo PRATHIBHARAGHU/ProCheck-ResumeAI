@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-8">
+        <h1 class="text-3xl font-black tracking-tight">Configure Analysis Vectors</h1>
+        <p class="text-sm text-slate-400 mt-1">Provide target role parameters and document payload targets for full pipeline audit parsing.</p>
+    </div>
+
+    <form id="analysis-form" method="POST" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Corporate Role / Title</label>
+                <input type="text" name="job_title" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="e.g. Senior Full-Stack Django Engineer">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Target Job Description Corpus Corpus</label>
+                <textarea name="job_description" rows="8" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all placeholder-slate-500 text-sm leading-relaxed" placeholder="Paste the complete tracking target job description requirements text payload here..."></textarea>
+            </div>
+        </div>
+
+        <!-- Document Handling File Drag Drop Component -->
+        <div class="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm border-dashed border-2 hover:border-indigo-500 transition-colors text-center relative group">
+            <input type="file" name="resume_file" accept=".pdf" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+            <div class="space-y-2">
+                <div "font-size : 15px;" >Import resource from device(PDF)</div>
+                <h4 class="text-sm font-bold">Upload Resume File (PDF Format Only)</h4>
+                <p class="text-xs text-slate-400">Click to locate system path or drag target file item tracking layer block here</p>
+            </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold tracking-wide hover:opacity-95 shadow-xl shadow-indigo-500/10 transition-all flex items-center justify-center gap-2">
+             Initialize AI Engine Optimization Run
+        </button>
+    </form>
+</div>
+
+<!-- Modal Functional Loading Overlay Screen Canvas Layout Block Segment -->
+<div id="loading-screen" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center flex-col z-50 text-center p-4">
+    <div class="w-20 h-20 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-6 shadow-2xl shadow-indigo-500/50"></div>
+    <h3 class="text-xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Executing Deep Parsing Strategy Matrix</h3>
+    <p id="loading-text" class="text-xs font-mono text-slate-400 mt-2 transition-all duration-300">Evaluating multi-vector semantic profiles...</p>
+</div>
+{% endblock %}

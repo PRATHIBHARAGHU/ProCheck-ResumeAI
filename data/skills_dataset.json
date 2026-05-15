@@ -1,0 +1,9 @@
+{
+  "languages": ["python", "javascript", "typescript", "java", "c++", "c#", "ruby", "go", "golang", "rust", "php", "swift", "kotlin", "scala", "r", "sql", "html", "css", "bash", "shell"],
+  "frameworks": ["django", "flask", "fastapi", "react", "vue", "angular", "next.js", "nuxt.js", "express", "spring boot", "laravel", "ruby on rails", "asp.net", "symfony", "nest.js", "tailwind css", "bootstrap"],
+  "tools": ["git", "github", "gitlab", "docker", "kubernetes", "ansible", "terraform", "jenkins", "circleci", "webpack", "vite", "npm", "yarn", "pip", "poetry", "jira", "confluence", "postman"],
+  "databases": ["postgresql", "mysql", "sqlite", "mongodb", "redis", "cassandra", "elasticsearch", "mariadb", "oracle", "dynamodb", "neo4j", "supabase", "firebase"],
+  "cloud": ["aws", "azure", "google cloud platform", "gcp", "heroku", "digitalocean", "vercel", "netlify", "cloudflare"],
+  "ai_ml": ["scikit-learn", "tensorflow", "pytorch", "keras", "spacy", "nltk", "opencv", "pandas", "numpy", "huggingface", "transformers", "langchain", "llm", "bert", "gpt", "computer vision", "nlp"],
+  "soft_skills": ["communication", "leadership", "teamwork", "problem solving", "critical thinking", "time management", "adaptability", "conflict resolution", "agile", "scrum", "mentoring", "collaboration"]
+}

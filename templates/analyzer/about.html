@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-black tracking-tight mb-2">Technical Specification Document</h1>
+        <p class="text-sm text-slate-400 font-mono">System Architecture Framework Version 3.4.1-L6</p>
+    </div>
+
+    <div class="space-y-8 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        <section class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">1. Multi-Vector Mathematical Formulation Model</h2>
+            <p class="mb-4">The analysis scoring ledger does not operate on basic pattern counting. It balances composite vector attributes across a rigid weighting matrix formulation:</p>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 font-mono text-xs border border-slate-100 dark:border-slate-800 text-indigo-400">
+                Score = (Keyword_Match * 0.30) + (Semantic_Match * 0.25) + (Skills_Match * 0.20) + (Section_Layout * 0.15) + (Formatting_Readability * 0.10)
+            </div>
+        </section>
+
+        <section class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">2. Processing Engines & Pipelines</h2>
+            <ul class="space-y-2 list-disc list-inside">
+                <li><strong class="text-slate-950 dark:text-slate-50">Tokenization Stream:</strong> Executed natively inside custom spaCy / NLTK abstraction wrapper components filtering out semantic punctuation matrices.</li>
+                <li><strong class="text-slate-950 dark:text-slate-50">TF-IDF Similarity Matrix:</strong> Converts strings into high-dimensional vector representations to track explicit terminology densities via Cosine Similarity calculations.</li>
+                <li><strong class="text-slate-950 dark:text-slate-50">Context Transformer Engine:</strong> Leverages the <code class="font-mono text-purple-400">all-MiniLM-L6-v2</code> SentenceTransformer pipeline model mapping structural concept layers over dense latent space coordinates.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}
