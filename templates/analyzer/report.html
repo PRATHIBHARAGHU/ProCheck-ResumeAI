@@ -79,7 +79,7 @@
         <!-- Matched Skills Tracking Block Grid Array Segment -->
         <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
             <h3 class="text-sm font-bold text-emerald-500 flex items-center gap-2 mb-4">
-                <span>✅</span> Validated Tech Stack Intersections ({{ matched_skills|length }})
+                Validated Tech Stack Intersections ({{ matched_skills|length }})
             </h3>
             <div class="flex flex-wrap gap-2">
                 {% for skill in matched_skills %}
@@ -93,7 +93,7 @@
         <!-- Missing Skills Alert Block Section Segment -->
         <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
             <h3 class="text-sm font-bold text-red-500 flex items-center gap-2 mb-4">
-                <span>⚠️</span> Detected Competency Deficiencies ({{ missing_skills|length }})
+                 Detected Competency Deficiencies ({{ missing_skills|length }})
             </h3>
             <div class="flex flex-wrap gap-2">
                 {% for skill in missing_skills %}
@@ -108,7 +108,7 @@
     <!-- Optimization Suggestions Engine Stack Panel Output Box -->
     <div class="p-6 rounded-2xl bg-gradient-to-r from-indigo-900/20 to-purple-900/20 border border-indigo-500/20 shadow-sm">
         <h3 class="text-sm font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent flex items-center gap-2 mb-4">
-            <span>🧠</span> Diagnostic Optimization Instructions (AI Generated)
+            Diagnostic Optimization Instructions (AI Generated)
         </h3>
         <ul class="space-y-3 text-sm leading-relaxed text-slate-300">
             {% for item in suggestions %}

@@ -32,7 +32,7 @@
                                 <a href="{% url 'analyzer:report' row.pk %}" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors">Inspect Log</a>
                                 <form method="POST" action="{% url 'analyzer:delete' row.pk %}" onsubmit="return confirm('Confirm permanent deletion of this structural record packet?');">
                                     {% csrf_token %}
-                                    <button type="submit" class="px-3 py-1.5 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white text-xs font-semibold rounded-lg transition-all">Purge</button>
+                                    <button type="submit" class="px-3 py-1.5 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white text-xs font-semibold rounded-lg transition-all">Delete Log</button>
                                 </form>
                             </div>
                         </td>
