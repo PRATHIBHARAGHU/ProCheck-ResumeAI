@@ -3,11 +3,26 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-m(rc$w%23n6o9-g&t^#i*t9w_s9l906(r_o34&z30w(p0m@vdb'
+_secret = os.environ.get('SESSION_SECRET')
+if not _secret:
+    import warnings
+    warnings.warn(
+        "SESSION_SECRET is not set — using an insecure fallback key. "
+        "Set SESSION_SECRET before deploying to production.",
+        stacklevel=2,
+    )
+SECRET_KEY = _secret or 'django-insecure-m(rc$w%23n6o9-g&t^#i*t9w_s9l906(r_o34&z30w(p0m@vdb'
 
-DEBUG = True
+# Default to False in production; set DEBUG=True explicitly for local dev
+DEBUG = os.environ.get('DEBUG', 'False') != 'False'
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{os.environ.get('REPLIT_DEV_DOMAIN', 'localhost')}",
+    'https://*.replit.app',
+    'https://*.replit.dev',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
